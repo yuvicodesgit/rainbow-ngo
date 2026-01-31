@@ -6,8 +6,14 @@ import Footer from '@/components/Footer';
 import StickyCallBtn from '@/components/StickyCallBtn';
 import AboutSection from '@/components/AboutSection';
 import GallerySection from '@/components/GallerySection';
+import { getAllEvents, getAllGalleries } from '@/lib/graphql';
 
-export default function Home() {
+export const revalidate = 60; // ISR
+
+export default async function Home() {
+  const events = await getAllEvents();
+  const galleries = await getAllGalleries();
+
   return (
     <>
       <Header />
@@ -17,8 +23,8 @@ export default function Home() {
         <AboutSection />
 
         <ObjectivesGrid />
-        <ActivitiesCarousel />
-        <GallerySection />
+        <ActivitiesCarousel events={events} />
+        <GallerySection galleries={galleries} />
       </main>
       <Footer />
       <StickyCallBtn />
