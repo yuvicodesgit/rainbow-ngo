@@ -151,11 +151,23 @@ img {
 }
 
 .main-header.scrolled {
-  background: rgba(255, 255, 255, 0.8);
+  background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(16px);
   border-bottom: 1px solid rgba(255, 255, 255, 0.3);
   padding: 12px 0;
   box-shadow: var(--shadow-sm);
+}
+
+.main-header.scrolled .nav-list a {
+  color: var(--color-text-primary);
+}
+
+.main-header.scrolled .site-title {
+  color: var(--color-text-primary);
+}
+
+.main-header.scrolled .site-subtitle {
+  color: var(--color-text-secondary);
 }
 
 .header-container {
@@ -180,18 +192,20 @@ img {
 .site-title {
   font-size: 1.4rem;
   margin-bottom: 0;
-  color: var(--color-text-primary);
+  color: var(--color-white);
   font-weight: 800;
   letter-spacing: -0.02em;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 .site-subtitle {
   font-family: var(--font-body);
   font-size: 0.8rem;
-  color: var(--color-text-secondary);
+  color: rgba(255, 255, 255, 0.9);
   text-transform: uppercase;
   letter-spacing: 1.5px;
   font-weight: 500;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
 }
 
 .main-nav {
@@ -206,10 +220,11 @@ img {
 }
 
 .nav-list a {
-  font-weight: 500;
+  font-weight: 600;
   font-size: 0.95rem;
   position: relative;
-  color: var(--color-text-primary);
+  color: var(--color-white);
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 .nav-list a:hover {
@@ -296,6 +311,8 @@ img {
   line-height: 1.1;
   margin-bottom: 2rem;
   font-weight: 800;
+  color: var(--color-white);
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 .hero-desc {
