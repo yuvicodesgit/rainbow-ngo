@@ -93,6 +93,20 @@ export default function Header() {
                                 gap: '2rem'
                             }}
                         >
+                            <button
+                                onClick={() => setIsMobileMenuOpen(false)}
+                                style={{
+                                    alignSelf: 'flex-end',
+                                    background: 'none',
+                                    border: 'none',
+                                    cursor: 'pointer',
+                                    color: 'var(--color-text-primary)',
+                                    marginBottom: '-1rem'
+                                }}
+                                aria-label="Close menu"
+                            >
+                                <X size={32} />
+                            </button>
                             <ul className="mobile-nav-list" style={{ listStyle: 'none', textAlign: 'center', display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
                                 {navLinks.map((link) => (
                                     <li key={link.name}>

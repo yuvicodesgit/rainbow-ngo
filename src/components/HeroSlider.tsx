@@ -84,7 +84,7 @@ export default function HeroSlider() {
 
             <div className="container" style={{ position: 'relative', height: '100%', zIndex: 10 }}>
                 <div className="hero-content" ref={contentRef}>
-                    <span className="hero-kicker">Welcome to Rainbow Dhamma</span>
+                    <span className="hero-kicker" style={{ color: '#ffffff', textShadow: '0 2px 4px rgba(0,0,0,0.5)' }}>Welcome to Rainbow Dhamma</span>
                     <h2 ref={titleRef} className="hero-heading">
                         {slides[currentSlide].title}
                     </h2>

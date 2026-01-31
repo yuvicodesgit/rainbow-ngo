@@ -251,8 +251,17 @@ img {
   background: none;
   border: none;
   font-size: 1.5rem;
-  color: var(--color-text-primary);
+  color: var(--color-white);
   cursor: pointer;
+  position: absolute;
+  top: 25px;
+  right: 20px;
+  z-index: 1001;
+  /* Ensure it's above other elements */
+}
+
+.main-header.scrolled .mobile-menu-toggle {
+  color: var(--color-text-primary);
 }
 
 /* Hero Section */
@@ -835,6 +844,19 @@ img {
     display: block;
   }
 
+  /* Prevent overlap with absolute hamburger menu */
+  .site-branding {
+    max-width: calc(100% - 60px);
+    /* Reserve space for the button */
+  }
+
+  .site-title {
+    font-size: 1.2rem;
+    /* Slightly smaller on mobile */
+    white-space: normal;
+    /* Allow wrapping if needed */
+  }
+
   .hero-heading {
     font-size: 2.5rem;
   }
@@ -915,5 +937,21 @@ img {
 
   .logo-area {
     margin-bottom: 10px;
+  }
+}
+
+@media (max-width: 400px) {
+  .site-title {
+    font-size: 1rem;
+    /* Smaller for iPhone SE */
+  }
+
+  .site-subtitle {
+    font-size: 0.7rem;
+  }
+
+  /* Increase reserved space slightly more for safety */
+  .site-branding {
+    max-width: calc(100% - 65px);
   }
 }

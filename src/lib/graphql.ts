@@ -32,7 +32,56 @@ export interface Event {
   };
 }
 
+const MOCK_EVENTS: Event[] = [
+  {
+    slug: 'mock-event-1',
+    title: 'Community Health Camp',
+    date: '2023-12-15T10:00:00',
+    events: {
+      eventDate: 'December 15, 2023',
+      eventLocation: 'Guwahati, Assam',
+      eventDescription: 'Free health checkup camp for the community.',
+      eventBanner: {
+        node: {
+          sourceUrl: 'https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&q=80',
+        },
+      },
+    },
+    featuredImage: {
+      node: {
+        sourceUrl: 'https://images.unsplash.com/photo-1576091160399-112da8d60f29?auto=format&fit=crop&q=80',
+      },
+    },
+  },
+  {
+    slug: 'mock-event-2',
+    title: 'Education for All Drive',
+    date: '2024-01-20T09:00:00',
+    events: {
+      eventDate: 'January 20, 2024',
+      eventLocation: 'Rural Assam',
+      eventDescription: 'Distributing study materials to underprivileged children.',
+      eventBanner: {
+        node: {
+          sourceUrl: 'https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&q=80',
+        },
+      },
+    },
+    featuredImage: {
+      node: {
+        sourceUrl: 'https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&q=80',
+      },
+    },
+  },
+];
+
 export const getAllEvents = async (): Promise<Event[]> => {
+  // If API_URL is default/empty, or request fails, return mock data
+  if (!API_URL || API_URL.includes('MYDOMAIN.com')) {
+    console.warn('Using Mock Data for Events (API_URL not configured)');
+    return MOCK_EVENTS;
+  }
+
   const query = `
     query GetAllEvents {
       events {
@@ -60,11 +109,20 @@ export const getAllEvents = async (): Promise<Event[]> => {
     }
   `;
 
-  const data = await client.request(query);
-  return data.events.nodes;
+  try {
+    const data = await client.request(query);
+    return data.events.nodes;
+  } catch (error) {
+    console.error('Error fetching events:', error);
+    return MOCK_EVENTS;
+  }
 };
 
 export const getEventBySlug = async (slug: string) => {
+  if (!API_URL || API_URL.includes('MYDOMAIN.com')) {
+    return MOCK_EVENTS.find((e) => e.slug === slug) || null;
+  }
+
   const query = `
     query GetEventBySlug {
       event(id: "${slug}", idType: SLUG) {
@@ -89,8 +147,13 @@ export const getEventBySlug = async (slug: string) => {
     }
   `;
 
-  const data = await client.request(query);
-  return data.event;
+  try {
+    const data = await client.request(query);
+    return data.event;
+  } catch (error) {
+    console.error(`Error fetching event ${slug}:`, error);
+    return MOCK_EVENTS.find((e) => e.slug === slug) || null;
+  }
 };
 
 // Gallery Types and Functions
@@ -110,6 +173,11 @@ export interface Gallery {
 }
 
 export const getAllGalleries = async (): Promise<Gallery[]> => {
+  if (!API_URL || API_URL.includes('MYDOMAIN.com')) {
+    console.warn('Using empty gallery list (API_URL not configured)');
+    return [];
+  }
+
   const query = `
     query GetGalleries {
       galleries {
