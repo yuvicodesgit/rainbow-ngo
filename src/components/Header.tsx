@@ -27,11 +27,11 @@ export default function Header() {
     };
 
     const navLinks = [
-        { name: 'Home', href: '#home' },
-        { name: 'About', href: '#about' },
-        { name: 'Objectives', href: '#objectives' },
-        { name: 'Activities', href: '#activities' },
-        { name: 'Contact', href: '#contact' },
+        { name: 'Home', href: '/#home' },
+        { name: 'About', href: '/#about' },
+        { name: 'Objectives', href: '/#objectives' },
+        { name: 'Activities', href: '/#activities' },
+        { name: 'Contact', href: '/#contact' },
     ];
 
     return (
@@ -56,7 +56,7 @@ export default function Header() {
                             </li>
                         ))}
                     </ul>
-                    <Link href="#donate" className="btn btn-donate">
+                    <Link href="/#donate" className="btn btn-donate">
                         <Heart size={18} fill="currentColor" /> Donate
                     </Link>
                 </nav>
@@ -107,7 +107,7 @@ export default function Header() {
                                 ))}
                             </ul>
                             <Link
-                                href="#donate"
+                                href="/#donate"
                                 className="btn btn-donate"
                                 onClick={() => setIsMobileMenuOpen(false)}
                                 style={{ width: '100%', justifyContent: 'center' }}

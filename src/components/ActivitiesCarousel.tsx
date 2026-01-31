@@ -1,16 +1,14 @@
 "use client";
 
 import { useRef, useState, useEffect } from 'react';
+import Link from 'next/link';
+import { Event } from '@/lib/graphql';
 
-const activities = [
-    { img: 'https://images.unsplash.com/photo-1594708767771-a7502209ff51?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80', date: 'Oct 12, 2025', title: 'Community Kitchen', desc: 'Served over 500 meals this weekend.' },
-    { img: 'https://images.unsplash.com/photo-1544367563-12123d832d34?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80', date: 'Nov 05, 2025', title: 'Yoga for All', desc: 'Morning sessions creating calm minds.' },
-    { img: 'https://images.unsplash.com/photo-1518133910546-b6c2fb7d79e3?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80', date: 'Dec 01, 2025', title: 'Winter Clothing Drive', desc: 'Collecting warm clothes for the homeless.' },
-    { img: 'https://images.unsplash.com/photo-1471107340929-a87cd0f5b5f3?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80', date: 'Jan 15, 2026', title: 'Beach Cleanup', desc: 'Keeping our shores clean and life safe.' },
-    { img: 'https://images.unsplash.com/photo-1593113598332-cd288d649433?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80', date: 'Feb 10, 2026', title: 'Meditation Camp', desc: 'Finding inner peace together.' },
-];
+interface ActivitiesCarouselProps {
+    events: Event[];
+}
 
-export default function ActivitiesCarousel() {
+export default function ActivitiesCarousel({ events }: ActivitiesCarouselProps) {
     const scrollContainerRef = useRef<HTMLDivElement>(null);
     const [showPrev, setShowPrev] = useState(false);
     const [showNext, setShowNext] = useState(true);
@@ -48,6 +46,10 @@ export default function ActivitiesCarousel() {
         }
     }, []);
 
+    if (!events || events.length === 0) {
+        return null;
+    }
+
     return (
         <section id="activities" className="section activities-section">
             <div className="container">
@@ -58,18 +60,26 @@ export default function ActivitiesCarousel() {
                 <div className="carousel-container">
                     <div className="carousel-track-container" ref={scrollContainerRef}>
                         <ul className="carousel-track">
-                            {activities.map((activity, index) => (
-                                <li key={index} className="carousel-slide">
-                                    <div className="activity-card">
-                                        <img src={activity.img} alt={activity.title} />
-                                        <div className="activity-content">
-                                            <span className="date">{activity.date}</span>
-                                            <h4>{activity.title}</h4>
-                                            <p>{activity.desc}</p>
-                                        </div>
-                                    </div>
-                                </li>
-                            ))}
+                            {events.map((event, index) => {
+                                const imgUrl = event.events?.eventBanner?.node?.sourceUrl || event.featuredImage?.node?.sourceUrl || '/placeholder.jpg';
+                                const date = event.events?.eventDate ? new Date(event.events.eventDate).toLocaleDateString() : new Date(event.date).toLocaleDateString();
+                                const desc = event.events?.eventDescription?.replace(/<[^>]+>/g, '').substring(0, 100) + '...' || '';
+
+                                return (
+                                    <li key={event.slug} className="carousel-slide">
+                                        <Link href={`/events/${event.slug}`} className="activity-card-link">
+                                            <div className="activity-card">
+                                                <img src={imgUrl} alt={event.title} />
+                                                <div className="activity-content">
+                                                    <span className="date">{date}</span>
+                                                    <h4>{event.title}</h4>
+                                                    <p>{desc}</p>
+                                                </div>
+                                            </div>
+                                        </Link>
+                                    </li>
+                                )
+                            })}
                         </ul>
                     </div>
                     <button
