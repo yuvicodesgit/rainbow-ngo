@@ -3,11 +3,12 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, Heart } from 'lucide-react';
+import { Menu, X, Heart, ChevronDown } from 'lucide-react';
 
 export default function Header() {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const [isScrolled, setIsScrolled] = useState(false);
+    const [openSubMenu, setOpenSubMenu] = useState<string | null>(null);
 
     useEffect(() => {
         const handleScroll = () => {
@@ -24,13 +25,33 @@ export default function Header() {
 
     const toggleMenu = () => {
         setIsMobileMenuOpen(!isMobileMenuOpen);
+        setOpenSubMenu(null); // Reset submenus when toggling main menu
+    };
+
+    const toggleSubMenu = (name: string) => {
+        if (openSubMenu === name) {
+            setOpenSubMenu(null);
+        } else {
+            setOpenSubMenu(name);
+        }
     };
 
     const navLinks = [
         { name: 'Home', href: '/#home' },
         { name: 'About', href: '/#about' },
+        {
+            name: 'Blog',
+            href: '#',
+            subItems: [
+                { name: 'Assamese', href: '/category/blog-assamese' },
+                { name: 'Bengali', href: '/category/blog-bengali' },
+                { name: 'English', href: '/category/blog-english' },
+                { name: 'Hindi', href: '/category/blog-hindi' },
+            ]
+        },
         { name: 'Objectives', href: '/#objectives' },
         { name: 'Activities', href: '/#activities' },
+        { name: 'Gallery', href: '/#gallery' },
         { name: 'Contact', href: '/#contact' },
     ];
 
@@ -49,16 +70,29 @@ export default function Header() {
                 <nav className="main-nav desktop-only">
                     <ul className="nav-list">
                         {navLinks.map((link) => (
-                            <li key={link.name}>
-                                <Link href={link.href} className="nav-link">
+                            <li key={link.name} className={link.subItems ? 'has-dropdown' : ''}>
+                                <Link
+                                    href={link.href}
+                                    className="nav-link"
+                                    onClick={(e) => link.subItems && e.preventDefault()}
+                                >
                                     {link.name}
+                                    {link.subItems && <ChevronDown size={14} className="dropdown-icon" />}
                                 </Link>
+                                {link.subItems && (
+                                    <ul className="dropdown-menu">
+                                        {link.subItems.map((subLink) => (
+                                            <li key={subLink.name}>
+                                                <Link href={subLink.href} className="dropdown-link">
+                                                    {subLink.name}
+                                                </Link>
+                                            </li>
+                                        ))}
+                                    </ul>
+                                )}
                             </li>
                         ))}
                     </ul>
-                    <Link href="/#donate" className="btn btn-donate">
-                        <Heart size={18} fill="currentColor" /> Donate
-                    </Link>
                 </nav>
 
                 {/* Mobile Menu Toggle */}
@@ -90,7 +124,8 @@ export default function Header() {
                                 flexDirection: 'column',
                                 padding: '2rem',
                                 alignItems: 'center',
-                                gap: '2rem'
+                                gap: '2rem',
+                                overflowY: 'auto'
                             }}
                         >
                             <button
@@ -107,27 +142,69 @@ export default function Header() {
                             >
                                 <X size={32} />
                             </button>
-                            <ul className="mobile-nav-list" style={{ listStyle: 'none', textAlign: 'center', display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+                            <ul className="mobile-nav-list" style={{ listStyle: 'none', textAlign: 'center', display: 'flex', flexDirection: 'column', gap: '1.5rem', width: '100%' }}>
                                 {navLinks.map((link) => (
-                                    <li key={link.name}>
-                                        <Link
-                                            href={link.href}
-                                            onClick={() => setIsMobileMenuOpen(false)}
-                                            style={{ fontSize: '1.5rem', fontWeight: 600, color: 'var(--color-text-primary)' }}
-                                        >
-                                            {link.name}
-                                        </Link>
+                                    <li key={link.name} style={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                                        {link.subItems ? (
+                                            <>
+                                                <button
+                                                    onClick={() => toggleSubMenu(link.name)}
+                                                    style={{
+                                                        fontSize: '1.5rem',
+                                                        fontWeight: 600,
+                                                        color: 'var(--color-text-primary)',
+                                                        background: 'none',
+                                                        border: 'none',
+                                                        cursor: 'pointer',
+                                                        display: 'flex',
+                                                        alignItems: 'center',
+                                                        gap: '8px'
+                                                    }}
+                                                >
+                                                    {link.name}
+                                                    <motion.div
+                                                        animate={{ rotate: openSubMenu === link.name ? 180 : 0 }}
+                                                        transition={{ duration: 0.2 }}
+                                                    >
+                                                        <ChevronDown size={20} />
+                                                    </motion.div>
+                                                </button>
+                                                <AnimatePresence>
+                                                    {openSubMenu === link.name && (
+                                                        <motion.ul
+                                                            initial={{ height: 0, opacity: 0 }}
+                                                            animate={{ height: 'auto', opacity: 1 }}
+                                                            exit={{ height: 0, opacity: 0 }}
+                                                            transition={{ duration: 0.3 }}
+                                                            style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '1rem', marginTop: '1rem', overflow: 'hidden' }}
+                                                        >
+                                                            {link.subItems.map((subLink) => (
+                                                                <li key={subLink.name}>
+                                                                    <Link
+                                                                        href={subLink.href}
+                                                                        onClick={() => setIsMobileMenuOpen(false)}
+                                                                        style={{ fontSize: '1.2rem', fontWeight: 500, color: 'var(--color-text-secondary)' }}
+                                                                    >
+                                                                        {subLink.name}
+                                                                    </Link>
+                                                                </li>
+                                                            ))}
+                                                        </motion.ul>
+                                                    )}
+                                                </AnimatePresence>
+                                            </>
+                                        ) : (
+                                            <Link
+                                                href={link.href}
+                                                onClick={() => setIsMobileMenuOpen(false)}
+                                                style={{ fontSize: '1.5rem', fontWeight: 600, color: 'var(--color-text-primary)' }}
+                                            >
+                                                {link.name}
+                                            </Link>
+                                        )}
                                     </li>
                                 ))}
                             </ul>
-                            <Link
-                                href="/#donate"
-                                className="btn btn-donate"
-                                onClick={() => setIsMobileMenuOpen(false)}
-                                style={{ width: '100%', justifyContent: 'center' }}
-                            >
-                                <Heart size={18} fill="currentColor" /> Donate Now
-                            </Link>
                         </motion.div>
                     )}
                 </AnimatePresence>

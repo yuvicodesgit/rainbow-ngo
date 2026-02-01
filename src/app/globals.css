@@ -246,6 +246,69 @@ img {
   width: 100%;
 }
 
+/* Dropdown Menu */
+.nav-list li {
+  position: relative;
+}
+
+.dropdown-icon {
+  margin-left: 4px;
+  transition: transform 0.3s ease;
+}
+
+.nav-list li:hover .dropdown-icon {
+  transform: rotate(180deg);
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%) translateY(10px);
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  box-shadow: var(--shadow-lg);
+  border-radius: 12px;
+  padding: 10px 0;
+  min-width: 180px;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.nav-list li:hover .dropdown-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(0);
+}
+
+.dropdown-link {
+  display: block;
+  padding: 10px 20px;
+  color: var(--color-text-primary) !important;
+  font-size: 0.9rem !important;
+  font-weight: 500 !important;
+  white-space: nowrap;
+  text-shadow: none !important;
+  transition: all 0.2s ease;
+}
+
+.dropdown-link:hover {
+  background: rgba(0, 0, 0, 0.05);
+  color: var(--color-accent-orange) !important;
+  padding-left: 25px;
+}
+
+.dropdown-link::after {
+  display: none;
+  /* Remove underline effect for dropdown items */
+}
+
 .mobile-menu-toggle {
   display: none;
   background: none;
@@ -554,6 +617,40 @@ img {
 .footer-col {
   flex: 1;
   min-width: 250px;
+  position: relative;
+  /* Setup for pseudo-element */
+}
+
+@media (min-width: 768px) {
+  /* Vertical dividers removed */
+
+  /* First Column: Left Aligned (Default) */
+  .footer-col:first-child {
+    text-align: left;
+  }
+
+  /* Middle Columns: Text Align Left but distributed */
+  /* Second Column: Connect With Us */
+  .footer-col:nth-child(2) {
+    text-align: left;
+    padding-left: 20px;
+  }
+
+  /* Third Column: External Links - Shifted right */
+  .footer-col:nth-child(3) {
+    text-align: left;
+    padding-left: 80px;
+    /* Significant shift to the right */
+  }
+
+  /* Last Column: Right Aligned */
+  .footer-col:last-child {
+    text-align: right;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    /* Align flex children (ul) to the right */
+  }
 }
 
 .footer-col h3 {
