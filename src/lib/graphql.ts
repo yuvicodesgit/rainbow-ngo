@@ -1,8 +1,15 @@
 import { GraphQLClient } from 'graphql-request';
 
-const API_URL = process.env.NEXT_PUBLIC_WORDPRESS_API_URL || 'https://MYDOMAIN.com/graphql';
+const API_URL = process.env.NEXT_PUBLIC_WORDPRESS_API_URL || '';
 
-const client = new GraphQLClient(API_URL, {
+if (!API_URL) {
+  console.warn('⚠️ NEXT_PUBLIC_WORDPRESS_API_URL is not defined. Using mock data.');
+} else {
+  // Mask sensitive parts of URL in logs if needed, but here it's public
+  console.log(`📡 Connecting to WordPress API: ${API_URL}`);
+}
+
+const client = new GraphQLClient(API_URL || 'https://placeholder-url.com', {
   headers: {
     'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36',
     'Accept': 'application/json',
@@ -76,9 +83,8 @@ const MOCK_EVENTS: Event[] = [
 ];
 
 export const getAllEvents = async (): Promise<Event[]> => {
-  // If API_URL is default/empty, or request fails, return mock data
-  if (!API_URL || API_URL.includes('MYDOMAIN.com')) {
-    console.warn('Using Mock Data for Events (API_URL not configured)');
+  // If API_URL is empty, return mock data
+  if (!API_URL) {
     return MOCK_EVENTS;
   }
 
@@ -113,13 +119,15 @@ export const getAllEvents = async (): Promise<Event[]> => {
     const data = await client.request(query);
     return data.events.nodes;
   } catch (error) {
-    console.error('Error fetching events:', error);
+    console.error('❌ Error fetching events:', error);
+    // If we have an API_URL but it fails, we still return MOCK_EVENTS 
+    // to keep the UI from breaking, but the log will show the error.
     return MOCK_EVENTS;
   }
 };
 
 export const getEventBySlug = async (slug: string) => {
-  if (!API_URL || API_URL.includes('MYDOMAIN.com')) {
+  if (!API_URL) {
     return MOCK_EVENTS.find((e) => e.slug === slug) || null;
   }
 
@@ -151,7 +159,7 @@ export const getEventBySlug = async (slug: string) => {
     const data = await client.request(query);
     return data.event;
   } catch (error) {
-    console.error(`Error fetching event ${slug}:`, error);
+    console.error(`❌ Error fetching event ${slug}:`, error);
     return MOCK_EVENTS.find((e) => e.slug === slug) || null;
   }
 };
@@ -173,8 +181,7 @@ export interface Gallery {
 }
 
 export const getAllGalleries = async (): Promise<Gallery[]> => {
-  if (!API_URL || API_URL.includes('MYDOMAIN.com')) {
-    console.warn('Using empty gallery list (API_URL not configured)');
+  if (!API_URL) {
     return [];
   }
 
@@ -201,7 +208,7 @@ export const getAllGalleries = async (): Promise<Gallery[]> => {
     const data = await client.request(query);
     return data.galleries.nodes;
   } catch (error) {
-    console.error('Error fetching galleries:', error);
+    console.error('❌ Error fetching galleries:', error);
     return [];
   }
 };
