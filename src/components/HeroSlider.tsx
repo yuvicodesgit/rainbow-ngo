@@ -84,7 +84,7 @@ export default function HeroSlider() {
 
             <div className="container" style={{ position: 'relative', height: '100%', zIndex: 10 }}>
                 <div className="hero-content" ref={contentRef}>
-                    <span className="hero-kicker" style={{ color: '#ffffff', textShadow: '0 2px 4px rgba(0,0,0,0.5)' }}>Welcome to Rainbow Dhamma</span>
+                    <span className="hero-kicker" style={{ color: '#ffffff', textShadow: '0 2px 4px rgba(0,0,0,0.5)' }}>Welcome to Rainbow Dhamma Foundation</span>
                     <h2 ref={titleRef} className="hero-heading">
                         {slides[currentSlide].title}
                     </h2>
@@ -106,6 +106,7 @@ export default function HeroSlider() {
             {/* Controls */}
             <button
                 onClick={prevSlide}
+                className="hero-control-btn hero-prev"
                 style={{
                     position: 'absolute', left: '20px', top: '50%', transform: 'translateY(-50%)',
                     background: 'rgba(255,255,255,0.1)', border: 'none', borderRadius: '50%',
@@ -117,6 +118,7 @@ export default function HeroSlider() {
             </button>
             <button
                 onClick={nextSlide}
+                className="hero-control-btn hero-next"
                 style={{
                     position: 'absolute', right: '20px', top: '50%', transform: 'translateY(-50%)',
                     background: 'rgba(255,255,255,0.1)', border: 'none', borderRadius: '50%',

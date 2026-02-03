@@ -2,10 +2,10 @@ export default function Footer() {
     return (
         <footer className="main-footer">
             <div className="container footer-content">
-                <div className="footer-col">
+                <div className="footer-col" id="contact">
                     <h3>Rainbow Dhamma Foundation</h3>
                     <p style={{ marginBottom: '10px', fontSize: '0.9em' }}>CIN - U85420AS2025NPL029029</p>
-                    <div className="contact-info">
+                    <div className="contact-info" style={{ marginBottom: '25px' }}>
                         <p>
                             <strong>REGISTERED OFFICE:</strong><br />
                             44A, Byelane 3, Chaneki Path,<br />
@@ -13,8 +13,7 @@ export default function Footer() {
                             Kamrup Metro, Pin - 781037, Assam
                         </p>
                     </div>
-                </div>
-                <div className="footer-col" id="contact">
+
                     <h3>Connect With Us</h3>
                     <div className="contact-info">
                         <p>

@@ -43,13 +43,12 @@ export default function Header() {
             name: 'Blog',
             href: '#',
             subItems: [
-                { name: 'Assamese', href: '/category/blog-assamese' },
-                { name: 'Bengali', href: '/category/blog-bengali' },
-                { name: 'English', href: '/category/blog-english' },
-                { name: 'Hindi', href: '/category/blog-hindi' },
+                { name: 'English', href: '/blogs/english' },
+                { name: 'Assamese', href: '/blogs/assamese' },
+                { name: 'Bengali', href: '/blogs/bengali' },
+                { name: 'Hindi', href: '/blogs/hindi' },
             ]
         },
-        { name: 'Objectives', href: '/#objectives' },
         { name: 'Activities', href: '/#activities' },
         { name: 'Gallery', href: '/#gallery' },
         { name: 'Contact', href: '/#contact' },
@@ -62,7 +61,7 @@ export default function Header() {
                     <img src="/logo.jpg" alt="Rainbow Dhamma Foundation Logo" className="logo" />
                     <div className="site-branding">
                         <h1 className="site-title">Rainbow Dhamma Foundation</h1>
-                        <p className="site-subtitle">Compassion in Action</p>
+                        <p className="site-subtitle">Humanity in Action</p>
                     </div>
                 </div>
 

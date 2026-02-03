@@ -3,7 +3,7 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   title: "Rainbow Dhamma Foundation",
-  description: "Compassion in Action",
+  description: "Humanity in Action",
 };
 
 export default function RootLayout({

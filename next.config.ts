@@ -9,6 +9,10 @@ const nextConfig: NextConfig = {
       },
       {
         protocol: 'https',
+        hostname: 'cms.rainbowdhammafoundation.org',
+      },
+      {
+        protocol: 'https',
         hostname: '0.gravatar.com',
       },
       {

@@ -164,6 +164,113 @@ export const getEventBySlug = async (slug: string) => {
   }
 };
 
+// Blog Types and Functions
+export interface BlogDetails {
+  authorName: string;
+  publishDate: string;
+  mainBody: string;
+}
+
+export interface Blog {
+  id: string;
+  slug: string;
+  title: string;
+  content?: string;
+  featuredImage?: {
+    node: {
+      sourceUrl: string;
+    };
+  };
+  blogDetails: BlogDetails;
+}
+
+const LANGUAGE_MAP: Record<string, { plural: string; single: string }> = {
+  english: { plural: 'englishBlogs', single: 'englishBlog' },
+  assamese: { plural: 'assameseBlogs', single: 'assameseBlog' },
+  bengali: { plural: 'bengaliBlogs', single: 'bengaliBlog' },
+  hindi: { plural: 'hindiBlogs', single: 'hindiBlog' },
+};
+
+export const getAllBlogs = async (lang: string): Promise<Blog[]> => {
+  console.log("🚀 DEBUG: getAllBlogs VERSION 2 called for", lang);
+  if (!API_URL) return [];
+
+  const langConfig = LANGUAGE_MAP[lang.toLowerCase()];
+  if (!langConfig) {
+    console.error(`❌ Unsupported language: ${lang}`);
+    return [];
+  }
+
+  const query = `
+    query GetBlogsV3 {
+      ${langConfig.plural} {
+        nodes {
+          id
+          slug
+          title
+          featuredImage {
+            node {
+              sourceUrl
+            }
+          }
+          blogDetails {
+            authorName
+            publishDate
+            mainBody
+          }
+        }
+      }
+    }
+  `;
+
+  try {
+    const data = await client.request<any>(query);
+    return data[langConfig.plural].nodes;
+  } catch (error) {
+    console.error(`❌ Error fetching ${lang} blogs:`, error);
+    return [];
+  }
+};
+
+export const getBlogBySlug = async (lang: string, slug: string): Promise<Blog | null> => {
+  if (!API_URL) return null;
+
+  const langConfig = LANGUAGE_MAP[lang.toLowerCase()];
+  if (!langConfig) {
+    console.error(`❌ Unsupported language: ${lang}`);
+    return null;
+  }
+
+  const query = `
+    query GetBlogBySlugV3($slug: ID!) {
+      ${langConfig.single}(id: $slug, idType: SLUG) {
+        id
+        title
+        content
+        featuredImage {
+          node {
+            sourceUrl
+          }
+        }
+        blogDetails {
+          authorName
+          publishDate
+          mainBody
+        }
+      }
+    }
+  `;
+
+  try {
+    const data = await client.request<any>(query, { slug });
+    return data[langConfig.single];
+  } catch (error) {
+    console.error(`❌ Error fetching ${lang} blog ${slug}:`, error);
+    return null;
+  }
+};
+
+
 // Gallery Types and Functions
 export interface GalleryImage {
   sourceUrl: string;
@@ -205,11 +312,10 @@ export const getAllGalleries = async (): Promise<Gallery[]> => {
   `;
 
   try {
-    const data = await client.request(query);
+    const data = await client.request<any>(query);
     return data.galleries.nodes;
   } catch (error) {
     console.error('❌ Error fetching galleries:', error);
     return [];
   }
 };
-
