@@ -944,10 +944,17 @@ img {
     display: block;
   }
 
+  /* Increase header padding on mobile to push titles down */
+  .main-header {
+    padding: 45px 0 15px;
+  }
+
   /* Prevent overlap with absolute hamburger menu */
   .site-branding {
-    max-width: calc(100% - 60px);
-    /* Reserve space for the button */
+    max-width: calc(100% - 90px);
+    /* Reserve more space for the button */
+    padding-top: 15px;
+    /* Pushed the text branding further down */
   }
 
   .site-title {
@@ -959,6 +966,11 @@ img {
 
   .hero-heading {
     font-size: 2.5rem;
+  }
+
+  .hero-content {
+    padding-top: 40px;
+    /* Reduced back to more reasonable value */
   }
 
   .objectives-grid {
@@ -1056,9 +1068,9 @@ img {
     font-size: 0.7rem;
   }
 
-  /* Increase reserved space slightly more for safety */
+  /* Increase reserved space significantly more for safety */
   .site-branding {
-    max-width: calc(100% - 65px);
+    max-width: calc(100% - 95px);
   }
 }
 
@@ -1115,6 +1127,7 @@ img {
   margin-bottom: 20px;
   display: -webkit-box;
   -webkit-line-clamp: 3;
+  line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
