@@ -55,7 +55,7 @@ export default function Header() {
     ];
 
     return (
-        <header className={`main-header ${isScrolled ? 'scrolled' : ''}`}>
+        <header className={`main-header ${isScrolled || isMobileMenuOpen ? 'scrolled' : ''}`}>
             <div className="container header-container">
                 <div className="logo-area">
                     <img src="/logo.jpg" alt="Rainbow Dhamma Foundation Logo" className="logo" />
@@ -114,33 +114,20 @@ export default function Header() {
                             className="mobile-menu-container glass-panel"
                             style={{
                                 position: 'fixed',
-                                top: '80px',
+                                top: 0,
                                 left: 0,
                                 width: '100%',
-                                height: 'calc(100vh - 80px)',
+                                height: '100vh',
                                 zIndex: 999,
                                 display: 'flex',
                                 flexDirection: 'column',
-                                padding: '2rem',
+                                padding: '80px 2rem 2rem',
                                 alignItems: 'center',
                                 gap: '2rem',
-                                overflowY: 'auto'
+                                overflowY: 'auto',
+                                background: 'white' // Ensure it covers the page fully as requested
                             }}
                         >
-                            <button
-                                onClick={() => setIsMobileMenuOpen(false)}
-                                style={{
-                                    alignSelf: 'flex-end',
-                                    background: 'none',
-                                    border: 'none',
-                                    cursor: 'pointer',
-                                    color: 'var(--color-text-primary)',
-                                    marginBottom: '-1rem'
-                                }}
-                                aria-label="Close menu"
-                            >
-                                <X size={32} />
-                            </button>
                             <ul className="mobile-nav-list" style={{ listStyle: 'none', textAlign: 'center', display: 'flex', flexDirection: 'column', gap: '1.5rem', width: '100%' }}>
                                 {navLinks.map((link) => (
                                     <li key={link.name} style={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>

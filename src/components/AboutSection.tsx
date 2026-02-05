@@ -73,24 +73,24 @@ const AboutSection = () => {
                                 <h4 className="pdf-subheading text-lg mb-4 italic">TEACHING I - THE FOUR NOBLE TRUTHS:</h4>
                                 <p className="mb-4 pdf-body">Addressing suffering (Dukkha) as a universal reality and offering a path to liberation, the Buddha articulated ‘The Four Noble Truths’ in his first sermon after enlightenment. The truths are:</p>
                                 <ol className="list-decimal ml-8 space-y-4 pdf-body">
-                                    <li><strong>1. Truth of Suffering:</strong> Life involves inevitable suffering, including birth, aging, illness, death, separation from what we love, and not getting what we want.</li>
-                                    <li><strong>2. Truth of the Cause of Suffering:</strong> Suffering arises from craving, attachment, and ignorance, which fuel a cycle of desire and dissatisfaction.</li>
-                                    <li><strong>3. Truth of the Cessation of Suffering:</strong> Suffering can end completely by eliminating its causes, leading to nirvana—a state of peace and freedom.</li>
-                                    <li><strong>4. Truth of the Path to the Cessation of Suffering:</strong> The Noble Eightfold Path (right view, intention, speech, action, livelihood, effort, mindfulness, and concentration) guides this liberation.</li>
+                                    <li><strong>Truth of Suffering:</strong> Life involves inevitable suffering, including birth, aging, illness, death, separation from what we love, and not getting what we want.</li>
+                                    <li><strong>Truth of the Cause of Suffering:</strong> Suffering arises from craving, attachment, and ignorance, which fuel a cycle of desire and dissatisfaction.</li>
+                                    <li><strong>Truth of the Cessation of Suffering:</strong> Suffering can end completely by eliminating its causes, leading to nirvana—a state of peace and freedom.</li>
+                                    <li><strong>Truth of the Path to the Cessation of Suffering:</strong> The Noble Eightfold Path (right view, intention, speech, action, livelihood, effort, mindfulness, and concentration) guides this liberation.</li>
                                 </ol>
                             </div>
 
                             <div className="philosophy-block">
                                 <h4 className="pdf-subheading text-lg mb-4 italic">TEACHING II - THE NOBLE EIGHTFOLD PATH</h4>
                                 <ol className="list-decimal ml-8 space-y-4 pdf-body">
-                                    <li><strong>1. Right View:</strong> Correctly understanding the Four Noble Truths, the law of karma, and the impermanent, interconnected nature of reality.</li>
-                                    <li><strong>2. Right Resolve:</strong> Cultivating wholesome intentions centered on compassion, goodwill, and the renunciation of harmful attachments.</li>
-                                    <li><strong>3. Right Speech:</strong> Abstaining from lying, gossip, and harsh words; instead, speaking truthfully to promote harmony and understanding.</li>
-                                    <li><strong>4. Right Action:</strong> Practicing ethical conduct by refraining from harmful behaviors such as killing, stealing, and sexual misconduct.</li>
-                                    <li><strong>5. Right Livelihood:</strong> Earning a living through ethical professions that do not involve dishonesty or cause harm to sentient beings.</li>
-                                    <li><strong>6. Right Effort:</strong> Diligently working to eliminate negative mental states while nurturing and sustaining wholesome, positive qualities.</li>
-                                    <li><strong>7. Right Mindfulness:</strong> Maintaining non-judgmental, moment-to-moment awareness of one's body, feelings, mind, and thoughts.</li>
-                                    <li><strong>8. Right Concentration:</strong> Developing a disciplined, one-pointed mind through meditation to achieve deep tranquillity and insight.</li>
+                                    <li><strong>Right View:</strong> Correctly understanding the Four Noble Truths, the law of karma, and the impermanent, interconnected nature of reality.</li>
+                                    <li><strong>Right Resolve:</strong> Cultivating wholesome intentions centered on compassion, goodwill, and the renunciation of harmful attachments.</li>
+                                    <li><strong>Right Speech:</strong> Abstaining from lying, gossip, and harsh words; instead, speaking truthfully to promote harmony and understanding.</li>
+                                    <li><strong>Right Action:</strong> Practicing ethical conduct by refraining from harmful behaviors such as killing, stealing, and sexual misconduct.</li>
+                                    <li><strong>Right Livelihood:</strong> Earning a living through ethical professions that do not involve dishonesty or cause harm to sentient beings.</li>
+                                    <li><strong>Right Effort:</strong> Diligently working to eliminate negative mental states while nurturing and sustaining wholesome, positive qualities.</li>
+                                    <li><strong>Right Mindfulness:</strong> Maintaining non-judgmental, moment-to-moment awareness of one's body, feelings, mind, and thoughts.</li>
+                                    <li><strong>Right Concentration:</strong> Developing a disciplined, one-pointed mind through meditation to achieve deep tranquillity and insight.</li>
                                 </ol>
                             </div>
 
