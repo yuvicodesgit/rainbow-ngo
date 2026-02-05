@@ -13,19 +13,19 @@ const AboutSection = () => {
                     <div className="divider"></div>
                 </div>
                 <div className="about-content">
-                    <div className="vision-mission-text mb-12">
-                        <h3 className="pdf-subheading text-xl mb-4">VISION</h3>
-                        <p className="pdf-body mb-8 italic">
+                    <div className="vision-mission-text mb-24">
+                        <h3 className="pdf-subheading text-xl mb-12">VISION</h3>
+                        <p className="pdf-body mb-20 italic">
                             A world where holistic education, sustainable living, inner wellness, and cultural harmony empower every individual—human and animal alike—to thrive in dignity, justice, and unity with nature.
                         </p>
-                        <h3 className="pdf-subheading text-xl mb-4">MISSION</h3>
-                        <p className="pdf-body mb-8 italic">
+                        <h3 className="pdf-subheading text-xl mt-24 mb-12">MISSION</h3>
+                        <p className="pdf-body mb-20 italic">
                             To promote and offer holistic, progressive learning aligned with Jiddu Krishnamurti's vision of education; environmental stewardship; natural and holistic healing; mindfulness practices; teachings of Jiddu Krishnamurti, B.R. Ambedkar, and S.N. Goenka; arts and culture (especially of Assam and Northeast India); disaster relief; human rights advocacy; and animal welfare—towards building resilient communities rooted in compassion and equity.
                         </p>
                     </div>
 
                     <div className={`expanded-content ${isExpanded ? 'active' : 'hidden'}`}>
-                        <h3 className="pdf-subheading text-xl mb-6 text-center">OUR OBJECTIVES</h3>
+                        <h3 className="pdf-subheading text-xl mt-32 mb-20 text-center">OUR OBJECTIVES</h3>
                         <ol className="objectives-list pdf-body list-decimal ml-8">
                             <li>
                                 <strong>‘Holistic Learning and Education’</strong><br />
@@ -65,13 +65,13 @@ const AboutSection = () => {
                             "No Object of the Company will be carried out without obtaining prior approval from the Concerned Authorities and none of the objects will be carried out on commercial Basis."
                         </div>
 
-                        <div className="philosophy-section mt-12">
-                            <h3 className="pdf-subheading text-2xl mb-8 text-center">ORGANISATIONAL PHILOSOPHY</h3>
-                            <p className="mb-8 pdf-body">Our Organisational Philosophy is based on the following Core teachings of 'Gautama the Buddha':</p>
+                        <div className="philosophy-section mt-48">
+                            <h3 className="pdf-subheading text-2xl mb-24 text-center">ORGANISATIONAL PHILOSOPHY</h3>
+                            <p className="mb-20 pdf-body">Our Organisational Philosophy is based on the following Core teachings of 'Gautama the Buddha':</p>
 
                             <div className="philosophy-block">
-                                <h4 className="pdf-subheading text-lg mb-4 italic">TEACHING I - THE FOUR NOBLE TRUTHS:</h4>
-                                <p className="mb-4 pdf-body">Addressing suffering (Dukkha) as a universal reality and offering a path to liberation, the Buddha articulated ‘The Four Noble Truths’ in his first sermon after enlightenment. The truths are:</p>
+                                <h4 className="pdf-subheading text-lg mt-16 mb-12 italic">TEACHING I - THE FOUR NOBLE TRUTHS:</h4>
+                                <p className="mb-12 pdf-body">Addressing suffering (Dukkha) as a universal reality and offering a path to liberation, the Buddha articulated ‘The Four Noble Truths’ in his first sermon after enlightenment. The truths are:</p>
                                 <ol className="list-decimal ml-8 space-y-4 pdf-body">
                                     <li><strong>Truth of Suffering:</strong> Life involves inevitable suffering, including birth, aging, illness, death, separation from what we love, and not getting what we want.</li>
                                     <li><strong>Truth of the Cause of Suffering:</strong> Suffering arises from craving, attachment, and ignorance, which fuel a cycle of desire and dissatisfaction.</li>
@@ -81,7 +81,7 @@ const AboutSection = () => {
                             </div>
 
                             <div className="philosophy-block">
-                                <h4 className="pdf-subheading text-lg mb-4 italic">TEACHING II - THE NOBLE EIGHTFOLD PATH</h4>
+                                <h4 className="pdf-subheading text-lg mt-24 mb-12 italic">TEACHING II - THE NOBLE EIGHTFOLD PATH</h4>
                                 <ol className="list-decimal ml-8 space-y-4 pdf-body">
                                     <li><strong>Right View:</strong> Correctly understanding the Four Noble Truths, the law of karma, and the impermanent, interconnected nature of reality.</li>
                                     <li><strong>Right Resolve:</strong> Cultivating wholesome intentions centered on compassion, goodwill, and the renunciation of harmful attachments.</li>
@@ -94,8 +94,8 @@ const AboutSection = () => {
                                 </ol>
                             </div>
 
-                            <div className="philosophy-block mt-12">
-                                <h4 className="pdf-subheading text-lg mb-6 italic">TEACHING III - BELIEVE NOTHING WITHOUT VALID REASONING</h4>
+                            <div className="philosophy-block mt-32">
+                                <h4 className="pdf-subheading text-lg mt-16 mb-6 italic">TEACHING III - BELIEVE NOTHING WITHOUT VALID REASONING</h4>
                                 <div className="pdf-body">
                                     <p className="mb-2">"<strong>Do Not Believe</strong> in Anything (simply) because you have Heard it.</p>
                                     <p className="mb-2"><strong>Do Not Believe</strong> in Traditions because they have been Handed Down for many Generations.</p>
@@ -165,7 +165,7 @@ const AboutSection = () => {
             margin-bottom: 20px;
         }
         .philosophy-block {
-            margin-bottom: 30px;
+            margin-bottom: 100px;
         }
       `}</style>
         </section>

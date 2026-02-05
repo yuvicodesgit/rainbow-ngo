@@ -942,26 +942,53 @@ img {
 
   .mobile-menu-toggle {
     display: block;
+    top: 20px;
+  }
+
+  .main-header.scrolled .mobile-menu-toggle {
+    top: 18px;
   }
 
   /* Increase header padding on mobile to push titles down */
   .main-header {
-    padding: 45px 0 15px;
+    padding: 25px 0 15px;
+  }
+
+  .main-header.scrolled {
+    padding: 10px 0;
+  }
+
+  .logo {
+    width: 65px;
+    height: 65px;
+  }
+
+  .main-header.scrolled .logo {
+    width: 50px;
+    height: 50px;
   }
 
   /* Prevent overlap with absolute hamburger menu */
   .site-branding {
-    max-width: calc(100% - 90px);
+    max-width: calc(100% - 110px);
     /* Reserve more space for the button */
-    padding-top: 15px;
-    /* Pushed the text branding further down */
+    padding-top: 0;
   }
 
   .site-title {
-    font-size: 1.2rem;
+    font-size: 1.15rem;
     /* Slightly smaller on mobile */
     white-space: normal;
     /* Allow wrapping if needed */
+    line-height: 1.2;
+  }
+
+  .main-header.scrolled .site-title {
+    font-size: 1rem;
+  }
+
+  .site-subtitle {
+    font-size: 0.75rem;
   }
 
   .hero-heading {
@@ -1070,7 +1097,7 @@ img {
 
   /* Increase reserved space significantly more for safety */
   .site-branding {
-    max-width: calc(100% - 95px);
+    max-width: calc(100% - 120px);
   }
 }
 
